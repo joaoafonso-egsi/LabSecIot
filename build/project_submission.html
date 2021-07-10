@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<style>
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: none;
+}
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+
+ul.ks-cboxtags li{
+  display: inline;
+}
+ul.ks-cboxtags li label{
+    display: inline-block;
+    border: 2px solid rgba(139, 139, 139, .3);
+    color: #adadad;
+    border-radius: 25px;
+    margin: 3px 0px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .1s;
+}
+
+ul.ks-cboxtags li label {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label {
+    border: 2px solid #1bdbf8;
+    background-color: #12bbd4;
+    color: #fff;
+    transition: all .2s;
+}
+
+
+ul.ks-cboxtags li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+.buttonS {
+display: inline-block;
+    border: 2px solid rgba(139, 139, 139, .3);
+    color: #777777;
+    border-radius: 25px;
+    margin: 3px 0px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .1s;
+    height:50px;
+    float: right;
+}
+
+.buttonS:hover {
+  background-color: #008CBA;
+  color: #CCCCCC;
+}
+p {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 10px;
+  margin-right: 0;
+}
+h2 {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 10px;
+  margin-right: 0;
+}
+
+</style>
+
+<body>
+
+<h2>Submissão de Projetos - LabSecIoT</h2>
+	<p>Nome do Autor*:</p> <input type="text" id="FullName" name="FullName" placeholder="Autor"><br><br>
+	<p>Nome do Projeto*:</p> <input type="text" id="ProjectName" name="ProjectName" placeholder="SuperProject360"><br>
+    
+    <p>Descrição do projeto*:</p>
+    <textarea rows="8" cols="50" name="ProjectDescription" id="ProjectDescription" placeholder="O SuperProject360 vai revolucionar o mercado de projetos..."></textarea>
+    
+    <p>Seleciona a(s) categoria(s) que melhor se adequa(m) ao teu projeto*:</p>
+    
+  <ul class="ks-cboxtags">
+    <li><input type="checkbox" id="categ1" value="SmartCity"><label for="categ1">Smart City</label></li>
+    <li><input type="checkbox" id="categ2" value="SmartMobility"><label for="categ2">Smart Mobility</label></li>
+    <li><input type="checkbox" id="categ3" value="MachineLearning"><label for="categ3">Machine Learning</label></li>
+    <li><input type="checkbox" id="categ4" value="TrafficManagement"><label for="categ4">Traffic Management</label></li>    
+    <li><input type="checkbox" id="categ5" value="IoT"><label for="categ5">IoT</label></li>
+    <li><input type="checkbox" id="categ6" value="Safe City"><label for="categ6">Safe City</label></li>    
+    <li><input type="checkbox" id="categ7" value="VideoAnalytics"><label for="categ7">Video Analytics</label></li>
+	<li><input type="checkbox" id="categ8" value="HumanAnalytics"><label for="categ8">Human Analytics</label></li>
+	<li><input type="checkbox" id="categ9" value="AirQuality"><label for="categ9">Air Quality</label></li>
+	<li><input type="checkbox" id="categ10" value="SmartParking"><label for="categ10">Smart Parking</label></li>
+	<li><input type="checkbox" id="categ11" value="RGPD"><label for="categ11">RGPD</label></li>
+	<li><input type="checkbox" id="categ12" value="NGSILQ"><label for="categ12">NGSI-LQ</label></li>
+	<li><input type="checkbox" id="categ13" value="Others"><label for="categ13">Outros</label></li>
+  </ul>
+    
+    <p>Caso o projeto contenha links para o mesmo por favor coloque-os no campo abaixo:</p>
+    <textarea rows="3" cols="50" id="ProjectLinks" name="ProjectLinks" placeholder="http://www.superproject.360/"></textarea><br><br>
+    
+    <p>Referência:</p>
+    <input type="text" name="Reff" id="Reff" placeholder="Pessoa que referênciou"></textarea> <br><br><br>
+    
+<button class="button buttonS" type="button" onclick="sendMail()">Submeter Projeto</button>
+<br><br><br><br><br><br>
+
+
+
+
+<button type="button" class="collapsible">Informações</button>
+<div class="content">
+<p>Este formulário irá gerar um e-mail que terá que ser enviado. O e-mail estará no formato correto apenas será necessário clicar em enviar. Esperámos poder melhorar esta experiência no futuro.</p>
+<p>Autores: Em caso de múltiplos autores coloca os nomes separados por "," ou ";" ou "/" ou outro caractér fácil de distinguir. Caso seja muitos podem colocar simplesmente "Grupo" ou se quiserem ser mais específicos podem colocar por exemplo "GrupoDISCIPLINA-6" ou outro nome que especifique esse mesmo grupo.</p>
+<p>Links: Se o teu projeto está online algures coloca o link para pessoas que visitem o site poderem ver o teu projeto. Verifica que não é necessário username ou password para aceder ao mesmo. Caso não possas retirar (ou dê mais trabalho do que aquilo que estás disposto a fazer) por favor deixa noutra linhas o username e password para o mesmo.</p>
+<p>Referência: Neste campo deves preencher o nome da pessoa que te disse para preencher este formulário. Se estás a submeter o projeto ao LabSecIoT assume-se que alguém disse para o fazeres, escreve neste campo o nome dessa pessoa. Este campo não é obrigatório mas ajuda no caso do revisor das submissões não ter conhecimento do teu projeto, este poder confirmar com a pessoa que referenciou a sua validade.</p>
+<p>De momento todos os pedidos são revistos por um ser humano.</p>
+<p>Em caso de dúvidas ou problemas por favor contacte "labseciot@gmail.com" com o assunto "ERROR: PROJECT_SUBMISSION" (outros assuntos também servem mas com este sabe-se logo de que se trata). Os e-mails são respondidos geralmente em dias úteis entre as 10h e as 18h. Se achares que está a demorar contacta a tua referência.</p>
+</div>
+
+
+</body>
+</html>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+
+function sendMail(){
+var fn = document.getElementById('FullName').value;
+var pn = document.getElementById('ProjectName').value;
+var pd = document.getElementById('ProjectDescription').value;
+var pl = document.getElementById('ProjectLinks').value;
+var reff = document.getElementById('Reff').value;
+var tags ="";
+
+if (document.getElementById('categ1').checked) {
+tags = tags + document.getElementById('categ1').value + ";";
+}
+if (document.getElementById('categ2').checked) {
+tags = tags + document.getElementById('categ2').value + ";";
+}
+if (document.getElementById('categ3').checked) {
+tags = tags + document.getElementById('categ3').value + ";";
+}
+if (document.getElementById('categ4').checked) {
+tags = tags + document.getElementById('categ4').value + ";";
+}
+if (document.getElementById('categ5').checked) {
+tags = tags + document.getElementById('categ5').value + ";";
+}
+if (document.getElementById('categ6').checked) {
+tags = tags + document.getElementById('categ6').value + ";";
+}
+if (document.getElementById('categ7').checked) {
+tags = tags + document.getElementById('categ7').value + ";";
+}
+if (document.getElementById('categ8').checked) {
+tags = tags + document.getElementById('categ8').value + ";";
+}
+
+pd = pd.replace(/(?:\r|\n|\r\n)/g, '%0D');
+pl = pl.replace(/(?:\r|\n|\r\n)/g, '%0D');
+
+var ok = true;
+if(fn == "" || pn == "" || pd == "" || tags == "") {
+ok = false;
+}
+
+var subject = "PROJECT_SUBMISSION: " + pn + " by " + fn;
+
+body_message = "Nome do Autor:%0A" + fn + 
+"%0A%0ANome do Projeto:%0A" + pn +
+"%0A%0ADescrição do Projeto:%0A" + pd +
+"%0A%0ACategorias:%0A" + tags +
+"%0A%0ALinks:%0A" + pl +
+"%0A%0APessoa que referênciou:%0A" + reff;
+
+var mailto_link = 'mailto:labseciot@gmail?subject=' + subject + '&body=' + body_message;
+
+if(ok){
+  win = window.open(mailto_link, 'emailWindow');
+  if (win && win.open && !win.closed) win.close();} else {
+  alert("Preencha todos os campos obrigatórios.");
+  }
+
+}
+</script>

@@ -1,0 +1,241 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IDIoT Maker | LabSecIoT</title>
+    <link rel="icon" href="./img/favicon.png">
+    <link rel="stylesheet" href="./dir/idiotmaker/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">    <link rel="stylesheet" href="./dir/idiotmaker/vendor/bs-stepper.min.css">
+    <style>
+        html,
+        body {
+            height: 100vh;
+        }
+
+        .selected-item {
+            border-left: 5px solid #007bff
+        }
+
+        input {
+          outline: 0;
+          border-width: 0 0 1px;
+          border-color: var(--secondary)
+      }
+
+      input:focus {
+          border-color: var(--primary)
+      }
+
+      @media only screen and (max-width: 600px) {
+              body {
+                background-color: lightblue;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-light" onload="init()">
+    <div class="container-fluid h-100">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light px-4 pt-4 pb-0 d-flex ">
+            <a class="navbar-brand px-4" href="/"><img src="img/logo.png" height="50"></a>
+
+            <div class="collapse navbar-collapse" id="navbarsExample05">
+                <ul class="navbar-nav mr-auto">
+
+                </ul>
+                <h1 class="display-4">IDIoT Maker</h1>
+            </div>
+        </nav>
+        <div class="d-flex justify-content-between align-self-stretch row">
+            <!--LEFT -->
+            <div class="card bg-light border-0 col-lg m-4 p-0 flex column">
+                <div class="bs-stepper ">
+                    <div class="card-header p-0 pb-1 m-0 bg-light border-0">
+                        <div class="bs-stepper-header" role="tablist">
+                            <div class="step" data-target="#battery">
+                                <button type="button" class="step-trigger" role="tab" aria-controls="battery"
+                                id="battery-trigger">
+                                <span class="bs-stepper-circle"><i class="fas fa-battery-full text-white"></i></span>
+                                <span class="bs-stepper-label">Battery</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#connectivity">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="connectivity"
+                            id="connectivity-trigger">
+                            <span class="bs-stepper-circle"><i class="fas fa-wifi text-white"></i></span>
+                            <span class="bs-stepper-label">Connectivity</span>
+                        </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#sensor">
+                        <button type="button" class="step-trigger" role="tab" aria-controls="sensor"
+                        id="sensor-trigger">
+                        <span class="bs-stepper-circle"><i class="fas fa-microchip text-white"></i></span>
+                        <span class="bs-stepper-label">Sensor</span>
+                    </button>
+                </div>
+                <div class="line"></div>
+                <div class="step" data-target="#charger">
+                    <button type="button" class="step-trigger" role="tab" aria-controls="charger"
+                    id="charger-trigger">
+                    <span class="bs-stepper-circle"><i class="fas fa-plug text-white"></i></span>
+                    <span class="bs-stepper-label">Charger</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-0 align-self-stretch ">
+        <div class="bs-stepper-content">
+            <div id="battery" class="content" role="tabpanel" aria-labelledby="battery-trigger">
+                <ul id="battery-list" class="list-group"></ul>
+            </div>
+            <div id="connectivity" class="content" role="tabpanel"
+            aria-labelledby="connectivity-trigger">
+            <ul id="connectivity-list" class="list-group"></ul>
+        </div>
+        <div id="sensor" class="content" role="tabpanel" aria-labelledby="sensor-trigger">
+            <ul id="sensor-list" class="list-group"></ul>
+        </div>
+        <div id="charger" class="content" role="tabpanel" aria-labelledby="charger-trigger">
+            <ul id="charger-list" class="list-group"></ul>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<!-- RIGHT -->
+<div class="col-lg shadow bg-white rounded m-4 p-4">
+    <div class="card-body">
+        <div class="d-flex justify-content-between row px-2">
+            <div class="justify-content-center align-self-center">
+                <h3 class="font-weight-light"><i class="fas fa-robot text-secondary"></i> Your IDIoT Device </h3>
+            </div>
+            <div class="small align-self-center">
+                <div class="d-flex flex-row align-self-center align-items-center">
+                  <form class="form-inline align-items-center m-0">
+                    <div class="form-group custom-control custom-checkbox px-2">
+                      <input type="checkbox" class="custom-control-input" id="gps" onchange="updateIdiot()">
+                      <label class="custom-control-label" for="gps">GPS </label>
+                  </div>
+                  <span class="text-secondary px-2"> | </span>
+                  <div class="form-group custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="secure" onchange="updateIdiot()">
+                      <label class="custom-control-label" for="secure">SECURE </label>
+                  </div>
+                  <span class="text-secondary px-2"> | </span>
+                  <div class="form-group px-2">
+                    <input class=" form-control-sm text-secondary" id="mess_num" style="width: 4rem"type="number" placeholder="secs" min="0" max="14400" value="60" step="5" onchange="updateIdiot()">
+                    <label class="px-2" for="mess_num"> MESSAGING PERIOD</label>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<hr>
+<div id="idiot" class="">
+    <div class="card my-2 selected-item">
+        <div class="card-body d-flex justify-content-between" id="my-battery">
+            <div class="flex-row">
+                <h5 class="card-title">Battery</h5>
+                <p class="card-text">Select a battery</p>
+            </div>
+            <div class="flex-row">
+                <img src="" style="max-height: 60px">
+            </div>
+        </div>
+    </div>
+    <div class="card my-2 selected-item">
+        <div class="card-body d-flex justify-content-between" id="my-connectivity">
+            <div class="flex-row">
+                <h5 class="card-title">Connectivity</h5>
+                <p class="card-text">Select a connectivity</p>
+            </div>
+            <div class="flex-row">
+                <img src="" style="max-height: 60px">
+            </div>
+        </div>
+    </div>
+    <div class="card my-2 selected-item">
+        <div class="card-body d-flex justify-content-between" id="my-sensor">
+            <div class="flex-row">
+                <h5 class="card-title">Sensors</h5>
+                <p class="card-text">Select one or more sensors</p>
+            </div>
+            <div class="flex-row" id="sensor-imgs">
+
+            </div>
+        </div>
+    </div>
+    <div class="card my-2 selected-item">
+        <div class="card-body d-flex justify-content-between" id="my-charger">
+            <div class="flex-row">
+                <h5 class="card-title">Charger</h5>
+                <p class="card-text">Select a charger</p>
+            </div>
+            <div class="flex-row">
+                <img src="" style="max-height: 60px">
+            </div>
+        </div>
+    </div>
+    <hr class="my-3">
+    <p class="lead mb-2">Details:</p>
+    <div class="row p-0 m-0">
+        <div class="col-sm-12 col-md-6 px-1 m-0">
+            <ul class="list-group list-group-flush p-0">
+                <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+                    Power Battery
+                    <span class="badge badge-primary" id="power-battery"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+                    <span>Charging Time* </span>
+                    <span class="badge badge-primary" id="charging-time"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+                    <span>Data Usage <small>(per message)</small></span>
+                    <span class="badge badge-primary" id="data-usage"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+                    Price of Device
+                    <span class="badge badge-primary" id="price"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-12 col-md-6 px-1 m-0">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+                    Power Consumption
+                    <span class="badge badge-primary " id="power-consumption"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+                    Discharge Time
+                    <span class="badge badge-primary" id="discharge-time"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+                    Data Consumption (per month)
+                    <span class="badge badge-primary"id="data-consumption"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+                    <span>Monthly Fee</span>
+                    <span class="badge badge-primary" id="op-cost"></span>
+                </li>
+            </ul>
+        </div>
+        <small class="text-secondary px-4" >* Aprox. <span id="charging-footnote">0</span> days in winter conditions</small>
+
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script src="./dir/idiotmaker/vendor/bs-stepper.min.js"></script>
+<script src="./dir/idiotmaker/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+body {
+	padding-top: 54px;
+	background-color: #e6e6e6;
+
+}
+
+@media (min-width: 992px) {
+	body {
+		padding-top: 56px;
+	}
+}
+
+.navbar {
+	-webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);	
+}

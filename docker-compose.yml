@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  labseciot:
+    image: nginx:latest
+    container_name: labseciot
+    hostname: labseciot
+    restart: unless-stopped
+    networks:
+      - traefik-proxy
+    volumes:
+      - ./build:/usr/share/nginx/html
+
+networks:
+  traefik-proxy:
+    external: true
